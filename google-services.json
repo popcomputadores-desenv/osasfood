@@ -1,0 +1,161 @@
+{
+  "project_info": {
+    "project_number": "305635389664",
+    "firebase_url": "https://app-osasfood.firebaseio.com",
+    "project_id": "app-osasfood",
+    "storage_bucket": "app-osasfood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305635389664:android:890b683e47da3f3611e085",
+        "android_client_info": {
+          "package_name": "app.osasfood.cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305635389664-0ek5n0jfslavj6g19m03ge8ll7g1ggg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.osasfood.cliente",
+            "certificate_hash": "83fbd4d63907772e82e75000fa8c3232e5dc506b"
+          }
+        },
+        {
+          "client_id": "305635389664-hngrg7nr5jo3d474asvn1oagk1sa01qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj76pStYLMMAsKAeilLS8Yy_FtDy83apo"
+        },
+        {
+          "current_key": "AIzaSyCQDHnZ5-2JCbthB1oCA-oBKQumm5jYz1A"
+        },
+        {
+          "current_key": "AIzaSyB8THwGNhNDESbZld66uYbHjLUQGhRYzk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305635389664-hngrg7nr5jo3d474asvn1oagk1sa01qu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "305635389664-qv9ke02acfbpeg6m7grga0cbnqbagqe8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.osasfood.pedido"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305635389664:android:31fb1ce89efe3e2a11e085",
+        "android_client_info": {
+          "package_name": "app.osasfood.entrega"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305635389664-30v3rrijiibg5m3467gk68vkhhlhmrlv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.osasfood.entrega",
+            "certificate_hash": "bef7f06accd770225bfd63bd09df37fe7b1b107b"
+          }
+        },
+        {
+          "client_id": "305635389664-hngrg7nr5jo3d474asvn1oagk1sa01qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj76pStYLMMAsKAeilLS8Yy_FtDy83apo"
+        },
+        {
+          "current_key": "AIzaSyCQDHnZ5-2JCbthB1oCA-oBKQumm5jYz1A"
+        },
+        {
+          "current_key": "AIzaSyB8THwGNhNDESbZld66uYbHjLUQGhRYzk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305635389664-hngrg7nr5jo3d474asvn1oagk1sa01qu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "305635389664-qv9ke02acfbpeg6m7grga0cbnqbagqe8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.osasfood.pedido"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305635389664:android:1dc7d881ac3e43b011e085",
+        "android_client_info": {
+          "package_name": "app.osasfood.pedido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305635389664-ae9oke2vt4qgumdeft7phk821u9or2s1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.osasfood.pedido",
+            "certificate_hash": "4dd62b3205fe8e9324cb94a7578505bb5cb3194b"
+          }
+        },
+        {
+          "client_id": "305635389664-hngrg7nr5jo3d474asvn1oagk1sa01qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj76pStYLMMAsKAeilLS8Yy_FtDy83apo"
+        },
+        {
+          "current_key": "AIzaSyCQDHnZ5-2JCbthB1oCA-oBKQumm5jYz1A"
+        },
+        {
+          "current_key": "AIzaSyB8THwGNhNDESbZld66uYbHjLUQGhRYzk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305635389664-hngrg7nr5jo3d474asvn1oagk1sa01qu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "305635389664-qv9ke02acfbpeg6m7grga0cbnqbagqe8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.osasfood.pedido"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
