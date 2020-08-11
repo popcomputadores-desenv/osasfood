@@ -1,5 +1,5 @@
 /*personalização*/
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,600,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400italic,300italic,300,600,700);
 /*fim*/
 
 
@@ -1564,4 +1564,48 @@ display: unset;
 font-size: 14px;
 margin: 0px 5px;
 color: #ddd;
+}
+.iti__country-name, .iti__flag-box{
+color: #000;
+}
+
+.toolbar--material{
+box-shadow:none;
+}
+
+/*TOAST*/
+.toast--danger {
+  left: auto;
+  background-color: hsla(0,100%,14%,0.85);
+}
+
+.toast--success {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    border-radius: 30px;
+    background-color: hsl(141, 71%, 48%);
+    bottom: 10%;
+}
+.toast--success__message {
+    margin: 0;
+    text-align: center;
+}
+.toast--thick__message, .toast--thick__button {
+    font-weight: 700;
+}
+
+.dialog--dialog_small{
+min-height: 250px;
+width: 80%;
+}
+
+.page--dialog_no_connection{
+text-align:center;
+}
+
+.page--dialog_no_connection img{
+max-width:150px;
 }

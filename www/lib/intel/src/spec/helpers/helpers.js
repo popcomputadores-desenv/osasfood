@@ -1,16 +1,8 @@
 var input,
-  totalCountries = 233,
-  totalDialCodes = 227,
-  // don't call this "keys" as it will clash with the plugin
-  keyCodes = {
-    UP: 38,
-    DOWN: 40,
-    ENTER: 13,
-    ESC: 27,
-    BACKSPACE: 8,
-    DELETE: 46,
-    CTRL: 17
-  };
+  iti,
+  totalCountries = 243,
+  totalDialCodes = 228,
+  defaultPreferredCountries = 2;
 
 var intlSetup = function(utilsScript) {
   // by default put us in desktop mode
@@ -27,6 +19,27 @@ var intlSetup = function(utilsScript) {
   }
 };
 
+var intlTeardown = function() {
+  $("script.iti-load-utils").remove();
+  window.intlTelInputGlobals.startedLoadingUtilsScript = false;
+  window.intlTelInputGlobals.windowLoaded = false;
+  window.intlTelInputGlobals.autoCountry = null;
+  window.intlTelInputGlobals.startedLoadingAutoCountry = false;
+  // just make sure before we change the ref
+  if (!window.intlTelInputUtilsBackup) {
+    window.intlTelInputUtilsBackup = window.intlTelInputUtils;
+  }
+  window.intlTelInputUtils = null;
+  if (iti) iti.destroy();
+  if (input) input.remove();
+  input = iti = null;
+};
+
+var waitForUtilsRequest = function(done) {
+  // this wait is needed while jasmine actually does the request to load utils.js
+  setTimeout(done, 100);
+};
+
 var getInputVal = function(i) {
   i = i || input;
   return i.val();
@@ -39,43 +52,52 @@ var getParentElement = function(i) {
 
 var getListElement = function(i) {
   i = i || input;
-  return i.parent().find(".country-list");
+  return i.parent().find(".iti__country-list");
 };
 
 var getListLength = function(i) {
   i = i || input;
-  return getListElement(i).find("li.country").length;
+  return getListElement(i).find("li.iti__country").length;
 };
 
 var getActiveListItem = function(i) {
   i = i || input;
-  return getListElement(i).find("li.active");
+  return getListElement(i).find("li.iti__active");
 };
 
 var getPreferredCountriesLength = function(i) {
   i = i || input;
-  return getListElement(i).find("li.preferred").length;
+  return getListElement(i).find("li.iti__preferred").length;
 };
 
 var getSelectedFlagContainer = function(i) {
   i = i || input;
-  return i.parent().find(".selected-flag");
+  return i.parent().find(".iti__selected-flag");
 };
 
 var getSelectedFlagElement = function(i) {
   i = i || input;
-  return getSelectedFlagContainer(i).find(".iti-flag");
+  return getSelectedFlagContainer(i).find(".iti__flag");
+};
+
+var getSelectedDialCodeElement = function(i) {
+  i = i || input;
+  return getSelectedFlagContainer(i).find(".iti__selected-dial-code");
 };
 
 var getFlagsContainerElement = function(i) {
   i = i || input;
-  return i.parent().find(".flag-dropdown");
+  return i.parent().find(".iti__flag-container");
 };
 
 var selectFlag = function(countryCode, i) {
   i = i || input;
-  getSelectedFlagContainer(i).click();
-  getListElement(i).find("li[data-country-code='" + countryCode + "']").click();
+  getSelectedFlagContainer(i)[0].click();
+  getListElement(i).find("li[data-country-code='" + countryCode + "']")[0].click();
+};
+
+var openCountryDropDown = function() {
+  getSelectedFlagContainer()[0].click();
 };
 
 var putCursorAtEnd = function() {
@@ -87,28 +109,33 @@ var selectInputChars = function(start, end) {
   input[0].setSelectionRange(start, end);
 };
 
-var getKeyEvent = function(key, type) {
-  return $.Event(type, {
-    which: (key.length > 1) ? keyCodes[key] : key.charCodeAt(0)
-  });
+// use this for focus/blur (instead of using .focus() and .blur() directly, which cause problems in IE11)
+var triggerInputEvent = function(type) {
+  var e = new CustomEvent(type);
+  input[0].dispatchEvent(e);
+}
+
+var triggerKey = function(el, type, key) {
+  var e = new CustomEvent(type);
+  e.key = key;
+  el.dispatchEvent(e);
 };
 
 // trigger keydown, then keypress, then add the key, then keyup
 var triggerKeyOnInput = function(key) {
-  input.trigger(getKeyEvent(key, "keydown"));
-  var e = getKeyEvent(key, "keypress");
-  input.trigger(e);
-  // insert char
-  if (!e.isDefaultPrevented()) {
-    var domInput = input[0],
-      val = input.val();
-    input.val(val.substr(0, domInput.selectionStart) + key + val.substring(domInput.selectionEnd, val.length));
-  }
-  input.trigger(getKeyEvent(key, "keyup"));
+  triggerKey(input[0], 'keydown', key);
+  triggerKey(input[0], 'keypress', key);
+  var val = input.val();
+  input.val(val + key);
+  triggerKey(input[0], 'keyup', key);
 };
 
 var triggerKeyOnBody = function(key) {
-  $("body").trigger(getKeyEvent(key, "keydown"));
-  $("body").trigger(getKeyEvent(key, "keypress"));
-  $("body").trigger(getKeyEvent(key, "keyup"));
+  triggerKey(document, 'keydown', key);
+  triggerKey(document, 'keypress', key);
+  triggerKey(document, 'keyup', key);
+};
+
+var triggerKeyOnFlagsContainerElement = function(key) {
+  triggerKey(getFlagsContainerElement()[0], 'keydown', key);
 };

@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "../certificados/entrega.keystore",
+            "storePassword": "And6588Km",
+            "alias": "Entrega",
+            "password" : "And6588Km",
+            "keystoreType": ""
+        },
+        "release": {
+            "keystore": "../certificados/entrega.keystore",
+            "storePassword": "And6588Km",
+            "alias": "Entrega",
+            "password" : "And6588Km",
+            "keystoreType": ""
+        }
+    }
+}

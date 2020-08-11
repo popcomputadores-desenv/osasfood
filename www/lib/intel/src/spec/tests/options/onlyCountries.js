@@ -6,30 +6,29 @@ describe("onlyCountries option:", function() {
 
   beforeEach(function() {
     intlSetup();
-    input = $("<input>");
+    input = $("<input>").wrap("div");
   });
 
   afterEach(function() {
-    input.intlTelInput("destroy");
-    input = onlyCountries = null;
+    intlTeardown();
   });
 
 
 
-  describe("init plugin with onlyCountries", function() {
+  describe("init plugin with onlyCountries set to japan, china and korea", function() {
 
     var chinaCountryCode = "cn";
 
     beforeEach(function() {
       // China and Japan (note that none of the default preferredCountries are included here, so wont be in the list)
       onlyCountries = ['jp', chinaCountryCode, 'kr'];
-      input.intlTelInput({
-        onlyCountries: onlyCountries
+      iti = window.intlTelInput(input[0], {
+        onlyCountries: onlyCountries,
       });
     });
 
     it("defaults to the first onlyCountries alphabetically", function() {
-      expect(getSelectedFlagElement()).toHaveClass(chinaCountryCode);
+      expect(getSelectedFlagElement()).toHaveClass(`iti__${chinaCountryCode}`);
     });
 
     it("has the right number of list items", function() {
@@ -42,16 +41,16 @@ describe("onlyCountries option:", function() {
   describe("init plugin with onlyCountries for Afghanistan, Kazakhstan and Russia", function() {
 
     beforeEach(function() {
-      input.intlTelInput({
+      iti = window.intlTelInput(input[0], {
         preferredCountries: [],
-        onlyCountries: ["af", "kz", "ru"]
+        onlyCountries: ["af", "kz", "ru"],
       });
     });
 
     it("entering +7 defaults to the top priority country (Russia)", function() {
-      input.val("+7");
-      triggerKeyOnInput(" ");
-      expect(getSelectedFlagElement()).toHaveClass("ru");
+      input.val("+");
+      triggerKeyOnInput("7");
+      expect(getSelectedFlagElement()).toHaveClass("iti__ru");
     });
 
   });
@@ -60,32 +59,33 @@ describe("onlyCountries option:", function() {
 
   describe("init plugin on 2 different inputs with different onlyCountries and nationalMode = false", function() {
 
-    var input2;
+    var input2,
+      iti2;
 
     beforeEach(function() {
-      input2 = $("<input>");
+      input2 = $("<input>").wrap("div");
       // japan
-      input.intlTelInput({
+      iti = window.intlTelInput(input[0], {
         onlyCountries: ['jp'],
-        nationalMode: false
+        nationalMode: false,
       });
       // korea
-      input2.intlTelInput({
+      iti2 = window.intlTelInput(input2[0], {
         onlyCountries: ['kr'],
-        nationalMode: false
+        nationalMode: false,
       });
       $("body").append(getParentElement(input)).append(getParentElement(input2));
     });
 
     afterEach(function() {
-      getParentElement(input).remove();
-      getParentElement(input2).remove();
-      input2 = null;
+      iti2.destroy();
+      input2.remove();
+      input2 = iti2 = null;
     });
 
-    it("first instance still works", function() {
-      input.focus();
-      expect(input.val()).toEqual("+81");
+    it("they both display their respective only country option as the selected flag", function() {
+      expect(getSelectedFlagElement()).toHaveClass("iti__jp");
+      expect(getSelectedFlagElement(input2)).toHaveClass("iti__kr");
     });
 
   });

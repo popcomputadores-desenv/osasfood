@@ -2,70 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="lib/onsen/css/onsenui.css"/>
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.min.css"/>
     <link rel="stylesheet" href="lib/onsen/css/old-onsen-css-components.min.css"/>
     
     <link rel="stylesheet" href="css/app.css?ver=1.0">
-	<link href="lib/mobiscroll/css/mobiscroll.frame.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.frame.android.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.frame.android-holo.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.frame.ios-classic.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.frame.ios.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.scroller.android.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.scroller.android-holo.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.scroller.ios-classic.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.scroller.ios.css" rel="stylesheet" type="text/css" />
-	<link href="lib/mobiscroll/css/mobiscroll.android-holo-light.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> 
-
 	
-	<link rel="stylesheet" href="lib/fullcalendar/fullcalendar.css"/>	
-	        
+	<link rel="stylesheet" href="lib/fullcalendar/core/main.css"/>	
+	<link rel="stylesheet" href="lib/fullcalendar/daygrid/main.css"/>	
+	            
     <script src="lib/angular/angular.js"></script>
     <script src="lib/onsen/js/onsenui.js"></script> 
-    <script src="lib/jquery-3.4.1.min.js"></script>
+    <script src="lib/jquery-v3.4.1.js"></script>    
     <script type="text/javascript" src="cordova.js"></script>
-           
-    <script src="lib/mobiscroll/js/mobiscroll.core.js"></script>
-    <script src="lib/mobiscroll/js/mobiscroll.frame.js"></script>
-    <script src="lib/mobiscroll/js/mobiscroll.scroller.js"></script>
-    <script src="lib/mobiscroll/js/mobiscroll.util.datetime.js"></script>
-    <script src="lib/mobiscroll/js/mobiscroll.datetimebase.js"></script>
-    <script src="lib/mobiscroll/js/mobiscroll.datetime.js"></script>
-    <script src="lib/mobiscroll/js/mobiscroll.frame.android-holo.js"></script>
-    
-    
     <script src="lib/jquery.translate.js"></script>
     <script src="lib/imagesloaded.pkgd.min.js"></script>
     <script src="js/jquery.geocomplete.min.js"></script>
     
     <script src="lib/jsignature/jSignature.min.js"></script>   
-    <script src="lib/fullcalendar/moment.min.js"></script>
-    <script src="lib/fullcalendar/fullcalendar.min.js"></script>
-    <script src="lib/fullcalendar/lang/pt-br.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="lib/fullcalendar/core/main.js"></script>
+    <script src="lib/fullcalendar/daygrid/main.js"></script>
     <script src="lib/validate.min.js"></script>
     
-    <link href="lib/intel/build/css/intlTelInput.css" rel="stylesheet" type="text/css" />
-   <script type="text/javascript" src="lib/intel/build/js/intlTelInput.js"></script>
+    <link href="lib/intel/build/css/intlTelInput.min.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="lib/intel/build/js/intlTelInput-jquery.min.js"></script>
    
-   <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCQDHnZ5-2JCbthB1oCA-oBKQumm5jYz1A"></script>
-   <script src="lib/gmaps.js?version=1.0.0"></script>
-   
-   <script src="lib/leaflet/leaflet.js"></script>
-   <link href="lib/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
-   
-   <script src="lib/leaflet/plugin/routing/leaflet-routing-machine.min.js"></script>
-   <link href="lib/leaflet/plugin/routing/leaflet-routing-machine.css" rel="stylesheet" type="text/css" />
-   
-    
     <script src="js/config.js?ver=1.0"></script>
     <script src="js/tpl.js?ver=1.0"></script>    
     <script src="js/masterhub.js?ver=1.0"></script>    
     <script src="js/app.js?ver=1.0"></script> 
-    <script src="js/mapbox.js?ver=1.0"></script> 
-             
+	
   </head>
   <body>
     
@@ -107,12 +73,16 @@
        
            <p class="field-wrap">
            <ons-input type="text" name="username" id="username_field"  class="username_field"          
-           modifier="underbar" placeholder="Username" data-trn-key="username" float></ons-input>
+           modifier="underbar" placeholder="Username" data-trn-key="username"
+           autocomplete="new-username" 
+            float></ons-input>
            </p>
                                  
            <p class="field-wrap">
            <ons-input type="password" name="password" modifier="underbar" class="password_field" 
-           placeholder="Password" data-trn-key="password" float ></ons-input>
+           placeholder="Password" data-trn-key="password" 
+           autocomplete="new-password" 
+           float ></ons-input>
            </p>
            
            <p class="text-left">     
@@ -127,7 +97,7 @@
               </ons-row>
            </p>
            
-           <p class="text-left">
+           <p class="text-left"">
             <ons-if platform="android">
 	           <ons-button modifier="large" onclick="login()" >
 	           <span class="trn" data-trn-key="signin">Sign In</span>
@@ -193,14 +163,14 @@
           <span class="uppercase trn" data-trn-key="forgot_password">Forgot Password</span>
        </div> 
                      
-       <div class="inner">    
+       <div class="inner">   
+       
        
           <form id="frm-forgotpass"  method="post" onsubmit="return false;"> 
           <p class="field-wrap">
-           <ons-input type="text" id="email_field" name="email" modifier="underbar"	class="email_field"
+           <ons-input type="text" id="email_field" name="email" modifier="underbar" class="email_field"
             placeholder="Email" data-trn-key="email" float></ons-input>
-          </p>
-
+          </p>          
           <p class="text-left field-wrap">
             <span class="info-txt trn" data-trn-key="enter_your_email">
             Enter your email address and we'll send you a code to reset your password
@@ -283,7 +253,6 @@
 <!-- Atualização Master Hub (Correção de Tradução) -->
     <ons-toolbar modifier="toolbar-noshadow" style="background-color: #999;">
 <!-- Fim da atualização -->
-
         <div class="left">        
           <ons-toolbar-button onclick="showMenu(this)">
             <img class="svg" src="lib/images/menu--navigation-bar/menu.svg" onerror="this.src='menu.png'">
@@ -294,10 +263,10 @@
         <div class="center in-flex">        
           <img src="images/banner.png" >
         </div>
-
+        
         <div class="right">
           <ons-toolbar-button onclick="showPage('Notification.html')" >
-            <div class="notification baloon-notification">4</div>
+             <div class="notification baloon-notification">4</div>
             <img class="svg" src="lib/images/menu--navigation-bar/notification.svg" onerror="this.src='notification.png'">
             <!-- <ons-icon icon="ion-android-notifications-none" size="1.2em"></ons-icon>             -->
           </ons-toolbar-button>
@@ -305,59 +274,30 @@
 <!--           <ons-toolbar-button onclick="showCalendarView()">
             <ons-icon icon="ion-android-calendar" size="1.2em"></ons-icon>
           </ons-toolbar-button> -->
+        
         </div>
 
     </ons-toolbar>
     
-        <!--<ons-pull-hook id="pull-hook">           
-        </ons-pull-hook>            -->
-    
-       <!-- <ons-row class="orange-bar home-sub-nav">
-	       <ons-col width="70px" >
-	         <p class="todays_date"></p>
-	       </ons-col>
-	       <ons-col width="70px" >
-	         <p class="duty_status"></p>
-	       </ons-col>
-	       
-	       <ons-col width="70px" >
-	          <ons-switch input-id="onduty" class="on-duty" onchange="changeDuty()"   ></ons-switch>
-	       </ons-col>
-	       
-	       <ons-col class="text-right">
-	         <span class="bold total_order_total concat-text"></span>
-	       </ons-col>	       
-	    </ons-row>-->
-    
-        <!--<div class="list-wrapper" id="task-wrapper">
-        </div>-->
-                
-        <!--<div class="no-task-wrap inner">
-          <ons-button modifier="quiet" onclick="getTodayTask()">
-            <ons-icon icon="ion-android-refresh" modifier="grey-icon" size="30px"></ons-icon>
-          </ons-button>
-          <p></p>
-        </div>-->
+        <ons-tabbar id="tabbar_bottom" position="top" >
         
-        <ons-tabbar id="tabbar_bottom" position="top">
-        
-        <ons-tab page="pending_task_list.html">
+        <ons-tab page="pending_task_list.html" style="background: #000000;">
 		  <input type="radio" style="display: none">
 		  <button class="tabbar__button in-flex">
 		    <div class="tabbar__icon none">
-		      <ons-icon icon="ion-android-alert" size="0.8em"></ons-icon>
+		      <ons-icon icon="ion-android-alert" size="0.8em" style="line-height: 0px; margin: 6px;"></ons-icon>
 		    </div>
-		    <div class="tabbar__label trn" data-trn-key="pending_task" >Pending Task</div>    
+		    <div class="tabbar__label trn" data-trn-key="pending_task" style="font-size: 15px; margin: 7px; font-weight: 600;">Pending Task</div>    
 		  </button>
 		 </ons-tab>
 		 
-		<ons-tab page="completed_task_list.html" id="completed">
+		<ons-tab page="completed_task_list.html" id="completed" style="background: #9A9A9A;">
 		  <input type="radio" style="display: none">
 		  <button class="tabbar__button in-flex">
 		    <div class="tabbar__icon none">
-		      <ons-icon icon="ion-checkmark-circled" size="0.8em"></ons-icon>
+		      <ons-icon icon="ion-checkmark-circled" size="0.8em" style="line-height: 0px; margin: 6px;"></ons-icon>
 		    </div>
-		    <div class="tabbar__label trn" data-trn-key="completed_task" >Completed Task</div>    
+		    <div class="tabbar__label trn" data-trn-key="completed_task" style="font-size: 15px; margin: 7px; font-weight: 600;">Completed Task</div>    
 		  </button>
 		 </ons-tab> 
 	  
@@ -371,9 +311,9 @@
 	  <ons-list>	    
 	    <ons-list-item modifier="normal-menu" tappable onclick="showPage('profilePage.html',1)" >
         <img class="svg pr10" src="lib/images/menu--home/profile.svg" onerror="this.src='profile.png'">    
-        <span class="trn" data-trn-key="profile" >Profile</span>
-      </ons-list-item>
-      
+	    <span class="trn" data-trn-key="profile" >Profile</span>
+	    </ons-list-item>
+	    
       <ons-list-item modifier="normal-menu" onclick="showPage('CalendarView.html',1)"  tappable>
         <img class="svg pr10" src="lib/images/menu--home/calendar.svg" onerror="this.src='calendar.png'">    
         <span class="trn" data-trn-key="calendar">Calendar</span>
@@ -383,15 +323,14 @@
         <img class="svg pr10" src="lib/images/profile--bank/wallet.svg" onerror="this.src='wallet.png'">    
         <span class="trn" data-trn-key="rendimentos">Meus Rendimentos</span>
       </ons-list-item>
-
-      <ons-list-item modifier="normal-menu" onclick="showPage('SettingPage.html',1)"  tappable>
+	    <ons-list-item modifier="normal-menu" onclick="showPage('SettingPage.html',1)"  tappable>
         <img class="svg pr10" src="lib/images/menu--home/settings.svg" onerror="this.src='settings.png'">    
-        <span class="trn" data-trn-key="settings">Settings</span>
-      </ons-list-item>
-      
-      <ons-list-item modifier="normal-menu" tappable onclick="Logout()">
+	    <span class="trn" data-trn-key="settings">Settings</span>
+	    </ons-list-item>
+	    
+	    <ons-list-item modifier="normal-menu" tappable onclick="Logout()">
         <img class="svg pr10" src="lib/images/menu--home/logout.svg" onerror="this.src='logout.png'">    
-	      <span class="trn" data-trn-key="logout">Logout</span>
+	    <span class="trn" data-trn-key="logout">Logout</span>
 	    </ons-list-item>
 	    
 	  </ons-list>	  
@@ -572,18 +511,18 @@
          
          <input type="hidden" name="task_id_signature" class="task_id_signature">
          <input type="hidden" name="signature_id" class="signature_id">
-
+         
          <ons-bottom-toolbar class="button-toolbar-action">
            <p class="signature-action action-btn">
              <ons-button class="success" modifier="large" onclick="AddSignatureToTask()" >
-              <span class="trn" data-trn-key="done" >Done</span>
-             </ons-button>          
-           </p>
+            <span class="trn" data-trn-key="done" >Done</span>
+           </ons-button>          
+         </p>
            <p class="signature-action action-btn">
            <ons-button class="cancel" modifier="large" onclick="resetSignature();">
-             <span class="trn" data-trn-key="reset" >Reset</span>
-           </ons-button>
-           </p>
+           <span class="trn" data-trn-key="reset" >Reset</span>
+         </ons-button>
+         </p>
          </ons-bottom-toolbar>
 
        </div>
@@ -653,7 +592,7 @@
 		    <div class="tabbar__icon none">
 		      <ons-icon icon="ion-android-contact"></ons-icon>
 		    </div>
-		    <div class="tabbar__label trn" data-trn-key="personal">Personal</div>    
+		    <div class="tabbar__label trn" data-trn-key="personal" >Personal</div>    
 		  </button>
 		 </ons-tab>
 		 
@@ -686,7 +625,7 @@
 <!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
     <ons-template id="profilePessoal.html"> 
     <ons-page id="profilePagePessoal" >
-       
+    
        <div class="inner-profile">          
          
          <!--<ons-tabbar position="top">
@@ -857,9 +796,10 @@
       <div class="img_loader" id="img_loader_wrap">
       
         <div class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-    </div>
+		  <div class="double-bounce1"></div>
+		  <div class="double-bounce2"></div>
+		</div>
+      
          <img class="avatar" src=""/>
       </div>
     </div>
@@ -915,7 +855,7 @@
                <p class="driver-cpf inline"></p> 
              </div>
            </div>
-			
+           
            <div class="table w85 vtop cnpj_cpf">
              <div class="col a border">
               <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
@@ -925,7 +865,6 @@
                <p class="cnpj inline"></p>  
              </div>
            </div>
-			           
             <div class="table w85">
              <div class="col a border vtop">
               <img class="opaque svg" src="lib/images/profile--main/phone.svg" onerror="this.src='phone.png'">
@@ -1048,7 +987,7 @@
     </div>		
     
       </ons-page>
-    </ons-template> 
+    </ons-template>    
 <!-- Fim da atualização -->
 <!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
     <ons-template id="financeiro.html"> 
@@ -2104,12 +2043,12 @@
       
 	    <ons-list-item modifier="normal-menu" tappable onclick="editNotes()" >
         <img class="svg pr10" src="lib/images/others/edit.svg" onerror="this.src='edit.png'">
-	      <span class="trn" data-trn-key="edit" >Edit</span>
+	    <span class="trn" data-trn-key="edit" >Edit</span>
 	    </ons-list-item>
 	    	    
 	    <ons-list-item modifier="normal-menu" tappable onclick="deleteNotes()">
         <img class="svg pr10" src="lib/images/others/delete.svg" onerror="this.src='delete.png'">
-        <span class="trn" data-trn-key="delete">Delete</span>
+	    <span class="trn" data-trn-key="delete">Delete</span>
 	    </ons-list-item>
 	    
 	  </ons-list>	  
@@ -2169,7 +2108,7 @@
          <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
 <!-- Atualização Master Hub (Correção de Layout) -->
          <p class="top25">
-	         <ons-row>      
+         <ons-row>      
             <ons-col class="col-margin field-wrap">
               <ons-input type="text" name="first_name" modifier="underbar" class="first_name_fields"
                placeholder="First Name" data-trn-key="first_name_apelido" float></ons-input>
@@ -2183,8 +2122,7 @@
                 placeholder="Last Name" data-trn-key="last_name_completo" float></ons-input> 
             </ons-col>
          </ons-row>        
-         </p>     
-			 
+         </p>          
 	         <p class="top25">
 	         <ons-row>      
 	            <ons-col class="col-margin field-wrap">
@@ -2212,7 +2150,7 @@
             </ons-col>
 			 
             <ons-col class="field-wrap">
-               <ons-input type="text" name="phone"  placeholder="Celular" modifier="underbar" class="mobile_inputs" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarTelefone(this);" ng-maxlength="11" max="11" float></ons-input>
+               <ons-input type="text" id="mobile_inputs" name="phone" modifier="underbar" class="mobile_inputs"
             </ons-col>
          </ons-row>   
          </p>
@@ -2361,6 +2299,11 @@
                      
         <input type="hidden" name="driver_location_lat" id="driver_location_lat" class="driver_location_lat">  
         <input type="hidden" name="driver_location_lng" id="driver_location_lng" class="driver_location_lng">  
+        <input type="hidden" name="direction_task_lat" id="direction_task_lat" class="direction_task_lat">  
+        <input type="hidden" name="direction_task_lng" id="direction_task_lng" class="direction_task_lng">  
+        
+        <input type="hidden" name="direction_dropoff_lat" id="direction_dropoff_lat" class="direction_dropoff_lat">  
+        <input type="hidden" name="direction_dropoff_lng" id="direction_dropoff_lng" class="direction_dropoff_lng">  
         <div id="map_canvas"></div> 
        
          
@@ -2379,15 +2322,16 @@
 	       <ons-col width="70px" >
 	         <p class="uppercase todays_date"></p>
 <!-- Fim da atualização -->
-         </ons-col>
-
-         <ons-col class="text-right" >
+	       </ons-col>
+	       
+	       
+	       <ons-col class="text-right">
            <p class="uppercase inline duty_status"></p>
            <ons-switch input-id="onduty" class="on-duty" style="margin-top: 2px;" onchange="changeDuty()"> 
            </ons-switch>
-         </ons-col>     
-	      </ons-row>
-       
+	       </ons-col>	       
+	    </ons-row>
+       	    
        <div class="list-wrapper" id="task-wrapper">
        </div>
     
@@ -2401,22 +2345,22 @@
       <ons-pull-hook id="pull-hook-completed">           
       </ons-pull-hook>   
     
-        <ons-row class="orange-bar home-sub-nav">
+      <ons-row class="orange-bar home-sub-nav">
 <!-- Atualização Master Hub (Correção de Layout) -->
-         <ons-col width="70px" >
+	       <ons-col width="70px" >
            <p class="uppercase todays_date2"></p>
-         </ons-col>
+	       </ons-col>
 <!--          <ons-col class="text-right" >
            <p class="uppercase inline duty_status"></p>
            <ons-switch input-id="onduty" class="on-duty" style="margin-top: 2px;" onchange="changeDuty()"> 
            </ons-switch>
          </ons-col> -->
-         
+	       
          <ons-col class="col text-right">
            <i class="text-center">Lucro do dia! </i> <b class="total_order_total2 amout"></b>
 <!-- Fim da atualização -->
-         </ons-col>
-        </ons-row>
+	       </ons-col>	       
+	    </ons-row>
     
        <div class="list-wrapper" id="task_completed">         
        </div>   
@@ -2425,5 +2369,18 @@
     </ons-template> 
      
 
+	<template id="dialog_no_connection.html">
+	  <ons-dialog id="dialog_no_connection" modifier="dialog_small">
+	    <ons-page id="dialog_no_connection" modifier="dialog_no_connection">            
+	       <div class="to_center" style="margin-top:30px;">
+	       <img src="images/kuala.png">
+	       <h3 class="trn">Connection Error</h3>
+	       <p class="trn">Please check your network connectivity</p>
+	       </div>        
+	    </ons-page>
+	  </ons-dialog>
+	</template>
+    
+    
   </body>
 </html>

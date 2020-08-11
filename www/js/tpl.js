@@ -1,76 +1,52 @@
 function callAjax2(action,params)
-{
-	dump("action=>"+action);	
+{	
+	try {
+			
+	dump("callAjax2");
 	
-	if ( !hasConnection() ){
-		toastMsg( getTrans("Not connected to internet",'no_connection') );		
-		return;
-	}
+	params+=getParams();	
 	
-	/*params+="&lang_id="+getStorage("kr_lang_id");
-	if(!empty(krms_driver_config.APIHasKey)){
-		params+="&api_key="+krms_driver_config.APIHasKey;
-	}		
-	if ( !empty( getStorage("kr_token") )){		
-		params+="&token="+  getStorage("kr_token");
-	}*/
+    ajax_request2 = $.ajax({
+	  url: ajax_url+"/"+action,
+	  method: "post" ,
+	  data: params ,
+	  dataType: "json",
+	  timeout: ajax_timeout,
+	  crossDomain: true,
+	  beforeSend: function( xhr ) {
+	  	
+	  	 clearTimeout( timer[104] ); 
+	  	
+         if(ajax_request2 != null) {		   
+           ajax_request2.abort();
+		 } else {    				
+			timer[104] = setTimeout(function() {		
+         		if( ajax_request2 != null) {		
+				   ajax_request2.abort();				   
+         		}         		         		
+	        }, ajax_timeout ); 
+		 }
+      }
+    });
 	
-	params+=getParams();
+    ajax_request2.done(function( data ) {
+    	//
+    });
 	
-	dump(ajax_url+"/"+action+"?"+params);
-	
-	ajax_request2 = $.ajax({
-		url: ajax_url+"/"+action, 
-		data: params,
-		type: 'post',                  
-		async: false,
-		dataType: 'jsonp',
-		timeout: 6000,
-		crossDomain: true,
-		 beforeSend: function() {
-			if(ajax_request2 != null) {			 	
-			   /*abort ajax*/
-			   hideAllModal();	
-	           ajax_request2.abort();
-			} else {    
-				/*show modal*/			   
-				//loader.show();			    
-			}
-		},
-		complete: function(data) {					
-			//ajax_request2=null;   	     				
-			ajax_request= (function () { return; })();
-			hideAllModal();		
-		},
-		success: function (data) {	
-			if (data.code==1){
-				switch (action)
-				{
-					//silent
-					case "updateDriverLocation":
-					break;
-					
-					default:
-					break;
-				}
-			}
-		},
-		error: function (request,error) {	        
-		    hideAllModal();					
-			switch (action)
-			{
-				case "GetAppSettings":
-				case "getLanguageSettings":
-				case "registerMobile":
-				case "updateDriverLocation":
-				break;
-												
-				default:
-				onsenAlert( getTrans("Network error has occurred please try again!",'network_error') );		
-				break;
-			}
+	ajax_request2.always(function() {        
+        ajax_request2 = null;  
+    });	
+    
+    ajax_request2.fail(function( jqXHR, textStatus ) {    	
+    	$text = !empty(jqXHR.responseText)?jqXHR.responseText:'';
+		if(textStatus!="abort"){
+		   showToast( textStatus + "\n" + $text );             
 		}
-	});
+    });     
+    
+    } catch(err) {
+      showToast(err.message);
+    } 	
 }
 /** Atualização Master Hub (Modificação de Serviços no Aplicativo, Oculta dados do entregador, Cobrança por km adicional e dinamico, Identificação do Tipo da Entrega) **/
 function formatTask(data)
@@ -244,6 +220,21 @@ function formatTask(data)
 			                  html+='</div>';
 			             }
 			}			
+			                /*CONTACT LESS*/
+			              if(!empty(val.contactless)){
+			              	 if(val.contactless==1){
+			              	 	   html+='<div class="table">';
+					                 html+='<div class="col a">';
+					                 html+='<ons-icon icon="ion-location" size="20px"></ons-icon>';
+					                 html+='</div>';
+					                 html+='<div class="col">';
+					                 html+='<p>';
+					                 html+= '<b>'+getTrans("Delivery options","delivery_options") + "</b> : " + getTrans("Leave order at the door or gate",'leave_order_at');
+					                 html+='</p>';
+					                 html+='</div>';
+					              html+='</div>';
+			              	 }
+			              }
 						              
 			  if (val.tipo_veiculo == 'moto' || val.tipo_veiculo == 'moto+' || val.tipo_veiculo == 'carro' || val.tipo_veiculo == 'caminhao' || val.tipo_veiculo == 'bicicleta' || val.tipo_veiculo == ''){
 				  if (val.tipo_veiculo == ''){
@@ -865,7 +856,7 @@ function formatTaskDetailsClient(data)
 	             html+='</div>';
 	             html+='<div class="col">';
 	             // html+='<p><a class="tel" href="tel:'+data.contact_number+'">'+data.contact_number+'</a></p>';
-			 	 html+='<p><b class="opaque trn" data-trn-key="contact_number">'+ getTrans('Contact number: ','contact_number') +'</b><a class="tel" href="tel:'+data.contact_number+'"></a>'+data.contact_number+'</p>';
+	             html+='<p><a class="tel" onclick="externalPhoneCall('+ q(data.contact_number) +')">'+data.contact_number+'</a></p>';
 	             html+='</div>';
 	          html+='</div>     ';   
           } 
@@ -939,7 +930,7 @@ function TaskDetailsChevron_1(data )
 		return '';
 	}
 	var html='';
-	html+='<ons-list-item class="back-white normal-shadow" tappable onclick="viewTaskMap('+data.task_id+', '+ "'" +data.task_lat +"'" +', '+ "'" +data.task_lng +"'" +', '+ "'" + data.delivery_address + "'" + ' )"  >';
+	html+='<ons-list-item tappable onclick="mapExternalDirection('+ q(data.task_lat)+ "," + q(data.task_lng) +')"  >';
      html+='<ons-col width="90%" >     ';            
          html+='<div class="table">';
              html+='<div class="col a">';
@@ -1556,7 +1547,7 @@ function TaskDetailsChevron_4(data )
 	}	
 	
 	var html='';
-	html+='<ons-list-item tappable onclick="viewTaskMap('+data.task_id+', '+ "'" +data.merchant_lat +"'" +', '+ "'" +data.merchant_lng +"'" +', '+ "'" + data.merchant_address + "'" + ' )"  >';
+	html+='<ons-list-item tappable onclick="mapExternalDirection('+ q(data.merchant_lat) +"," + q(data.merchant_lng) +')" >';
      html+='<ons-col width="90%" >     ';            
          html+='<div class="table">';
              html+='<div class="col a">';
@@ -1702,7 +1693,7 @@ function pickupDetails(data)
 	             html+='</div>';
 	             html+='<div class="col">';
 	             // html+='<p><a class="tel" href="tel:'+data.dropoff_contact_number+'">'+data.dropoff_contact_number+'</a></p>';
-			     html+='<p><b class="opaque trn" data-trn-key="contact_number">'+ getTrans('Contact number: ','contact_number') +'</b><a class="tel" href="tel:'+data.dropoff_contact_number+'">'+data.dropoff_contact_number+'<a/></p>';
+	             html+='<p><a class="tel" onclick="externalPhoneCall('+ q(data.dropoff_contact_number) +')" >'+data.dropoff_contact_number+'</a></p>';
 	             html+='</div>';
 	         html+='</div>';     
 	         }
@@ -1716,7 +1707,7 @@ function pickupDetails(data)
    
   } else {
 
-		html+='<ons-list-item class="back-white" tappable onclick="viewDropOffMap()"  >';
+		html+='<ons-list-item tappable onclick="mapExternalDirection('+ q(data.dropoff_lat) +","+ q(data.dropoff_lng) +')"  >';
 	     html+='<ons-col width="90%" >     ';            
 	         html+='<div class="table">';
 	             html+='<div class="col a">';

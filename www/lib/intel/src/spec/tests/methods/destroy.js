@@ -4,29 +4,76 @@ describe("destroy: init plugin to test public method destroy", function() {
 
   beforeEach(function() {
     intlSetup();
-    input = $("<input>");
-    input.intlTelInput();
+    input = $("<input>").wrap("div");
+    iti = window.intlTelInput(input[0]);
   });
 
   afterEach(function() {
-    input = null;
+    intlTeardown();
   });
 
   it("adds the markup", function() {
-    expect(getParentElement()).toHaveClass("intl-tel-input");
+    expect(getParentElement()).toHaveClass("iti");
     expect(getSelectedFlagContainer()).toExist();
     expect(getListElement()).toExist();
   });
 
-  it("binds the events listeners", function() {
-    var listeners = $._data(input[0], 'events');
-    expect("blur" in listeners).toBeTruthy();
-    expect("focus" in listeners).toBeTruthy();
-    // autoHideDialCode defaults to false now because nationalMode defaults to true
-    //expect("mousedown" in listeners).toBeTruthy();
-    // normal
-    expect("keyup" in listeners).toBeTruthy();
+  // this is currently impossible in pure JS, until getEventListeners becomes standard
+  // it("binds the event listeners", function() {
+  //   var listeners = getEventListeners(input[0]);
+  //   expect("cut" in listeners).toBeTruthy();
+  //   expect("paste" in listeners).toBeTruthy();
+  //   expect("keyup" in listeners).toBeTruthy();
+  // });
+
+
+  describe("calling destroy", function() {
+
+    beforeEach(function() {
+      iti.destroy();
+    });
+
+    it("removes the markup", function() {
+      expect(getParentElement()).not.toHaveClass("iti");
+      expect(getSelectedFlagContainer()).not.toExist();
+      expect(getListElement()).not.toExist();
+    });
+
+    // this is currently impossible in pure JS, until getEventListeners becomes standard
+    // it("unbinds the event listeners", function() {
+    //   var listeners = getEventListeners(input[0]);
+    //   expect(listeners).toBeUndefined();
+    // });
+
   });
+
+});
+
+
+
+
+describe("destroy: init plugin with nationalMode=false and autoHideDialCode=true", function() {
+
+  beforeEach(function() {
+    intlSetup();
+    input = $("<input>").wrap("div");
+    iti = window.intlTelInput(input[0], {
+      nationalMode: false,
+      autoHideDialCode: true
+    });
+  });
+
+  afterEach(function() {
+    intlTeardown();
+  });
+
+  // this is currently impossible in pure JS, until getEventListeners becomes standard
+  // it("binds the events listeners", function() {
+  //   var listeners = getEventListeners(input[0]);
+  //   expect("blur" in listeners).toBeTruthy();
+  //   expect("focus" in listeners).toBeTruthy();
+  //   expect("mousedown" in listeners).toBeTruthy();
+  // });
 
 
   describe("calling destroy", function() {
@@ -35,16 +82,11 @@ describe("destroy: init plugin to test public method destroy", function() {
       input.intlTelInput("destroy");
     });
 
-    it("removes the markup", function() {
-      expect(getParentElement()).not.toHaveClass("intl-tel-input");
-      expect(getSelectedFlagContainer()).not.toExist();
-      expect(getListElement()).not.toExist();
-    });
-
-    it("unbinds the event listeners", function() {
-      var listeners = $._data(input[0], 'events');
-      expect(listeners).toBeUndefined();
-    });
+    // this is currently impossible in pure JS, until getEventListeners becomes standard
+    // it("unbinds the event listeners", function() {
+    //   var listeners = getEventListeners(input[0]);
+    //   expect(listeners).toBeUndefined();
+    // });
 
   });
 

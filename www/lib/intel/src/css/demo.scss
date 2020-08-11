@@ -11,7 +11,7 @@ body {
   color: #555;
 }
 
-.hide {
+.iti__hide {
   display: none;
 }
 
@@ -57,10 +57,10 @@ input, select {
 }
 ::-moz-placeholder {  /* Firefox 19+ */
    color: #BBB;
-   opacity:  1; 
+   opacity:  1;
 }
-:-ms-input-placeholder {  
-   color: #BBB;  
+:-ms-input-placeholder {
+   color: #BBB;
 }
 
 // borrowed from bootstrap
